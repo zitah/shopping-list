@@ -25,7 +25,8 @@ export const MOCK_STORES = [
   {
     name: 'Lidl',
     hideCompleted: true,
-  }, {
+  },
+  {
     name: 'Rossmann',
     hideCompleted: false,
   },
