@@ -1,6 +1,13 @@
+import { IStore} from '../interfaces/store.interface';
+
 export class Store {
     name: string;
-    hideCompeted: boolean;
+    hideCompleted: boolean;
 
-    constructor() {}
+    constructor(
+        store: IStore,
+    ) {
+        this.name = store.name;
+        this.hideCompleted = store.hideCompleted;
+    }
 }

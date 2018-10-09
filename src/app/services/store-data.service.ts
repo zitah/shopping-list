@@ -5,7 +5,7 @@ import { Store } from '../models/store.model'
 @Injectable()
 export class StoreDataService {
 
-  itemData$: Subject<Array<Store>>;
+  itemData$: Subject<Store[]>;
 
   constructor() {}
 }
