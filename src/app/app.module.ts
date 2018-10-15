@@ -11,7 +11,6 @@ const appRoutes: Routes = [
   { path: 'store-list', component: StoreListComponent },
   { path: 'item-list', component: ItemListComponent },
   { path: '', component: MainDashboardComponent },
-  
 ];
 
 @NgModule({
@@ -27,7 +26,6 @@ const appRoutes: Routes = [
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only      
     ),
-    
   ],
   providers: [],
   bootstrap: [AppComponent]
