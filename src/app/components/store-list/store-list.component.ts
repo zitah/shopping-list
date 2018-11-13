@@ -7,10 +7,28 @@ import { Store } from '../../models/store.model';
   templateUrl: './store-list.component.html',
   styleUrls: ['./store-list.component.css']
 })
+<<<<<<< HEAD
 export class StoreListComponent {
+=======
+export class StoreListComponent implements OnInit {
+
+  stores: Store[];
+  selectedStore: Store;
+>>>>>>> Create storelist component
 
   constructor(
     private storeDataService: StoreDataService
   ) { }
 
+<<<<<<< HEAD
+=======
+  ngOnInit() {
+    this.storeDataService.storeData$.subscribe(stores =>
+      this.stores = stores);
+  }
+
+  selectStore(store: Store) {
+    this.selectedStore = store;
+  }
+>>>>>>> Create storelist component
 }

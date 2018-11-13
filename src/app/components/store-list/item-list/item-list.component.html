@@ -1,0 +1,10 @@
+<div>
+  <h2>{{store.name}}</h2>
+  <div *ngFor="let filteredItem of filteredItems">
+    <h4>{{filteredItem.name}}</h4>
+    <ul>
+      <li>{{filteredItem.completed}}</li>
+      <li>{{filteredItem.storeId}}</li>
+    </ul>
+  </div>
+</div>
