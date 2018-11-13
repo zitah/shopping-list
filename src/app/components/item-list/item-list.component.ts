@@ -7,16 +7,10 @@ import { Item } from '../../models/item.model';
   templateUrl: './item-list.component.html',
   styleUrls: ['./item-list.component.css']
 })
-export class ItemListComponent implements OnInit {
-
-  items: Item[];
+export class ItemListComponent {
 
   constructor(
-    private ItemDataService: ItemDataService
+    private itemDataService: ItemDataService
   ) { }
 
-  ngOnInit() {
-    this.ItemDataService.itemData$.subscribe(items =>
-      this.items = items);
-  }
 }
