@@ -1,0 +1,9 @@
+<div>
+  <h2>Store List</h2>
+  <div *ngFor="let store of (storeDataService.storeData$ | async)">
+    <h4>{{store.name}}</h4>
+    <ul>
+      <li>{{store.hideCompleted}}</li>
+    </ul>
+  </div>
+</div>

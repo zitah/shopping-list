@@ -2,10 +2,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+//components
 import { AppComponent } from './app.component';
-import { StoreListComponent } from './store-list/store-list.component';
-import { ItemListComponent } from './item-list/item-list.component';
-import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
+import { StoreListComponent } from './components/store-list/store-list.component';
+import { ItemListComponent } from './components/item-list/item-list.component';
+import { MainDashboardComponent } from './components/main-dashboard/main-dashboard.component';
+
+// services
+import { StoreDataService } from './services/store-data.service';
+import { ItemDataService } from './services/item-data.service';
 
 const appRoutes: Routes = [
   { path: 'store-list', component: StoreListComponent },
@@ -27,7 +32,10 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only      
     ),
   ],
-  providers: [],
+  providers: [
+    StoreDataService,
+    ItemDataService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

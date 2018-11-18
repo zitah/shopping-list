@@ -1,0 +1,10 @@
+<div>
+  <h2>Item List</h2>
+  <div *ngFor="let item of (itemDataService.itemData$ | async)">
+    <h4>{{item.name}}</h4>
+    <ul>
+      <li>{{item.completed}}</li>
+      <li>{{item.storeId}}</li>
+    </ul>
+  </div>
+</div>
