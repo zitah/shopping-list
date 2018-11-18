@@ -6,7 +6,7 @@ export class Item {
     storeId: string;
 
     constructor(
-        item : IItem,
+        item: IItem,
     ) {
         this.name = item.name;
         this.completed = item.completed;

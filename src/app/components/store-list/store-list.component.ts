@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { StoreDataService} from '../../services/store-data.service';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Store } from '../../models/store.model';
 
 @Component({
@@ -7,28 +6,13 @@ import { Store } from '../../models/store.model';
   templateUrl: './store-list.component.html',
   styleUrls: ['./store-list.component.css']
 })
-<<<<<<< HEAD
 export class StoreListComponent {
-=======
-export class StoreListComponent implements OnInit {
 
-  stores: Store[];
-  selectedStore: Store;
->>>>>>> Create storelist component
+  @Input() stores: Store[];
+  @Input() selectedStore: Store;
+  @Output() selectStore: EventEmitter<string> = new EventEmitter();
 
-  constructor(
-    private storeDataService: StoreDataService
-  ) { }
-
-<<<<<<< HEAD
-=======
-  ngOnInit() {
-    this.storeDataService.storeData$.subscribe(stores =>
-      this.stores = stores);
+  select(store: string) {
+    this.selectStore.emit(store);
   }
-
-  selectStore(store: Store) {
-    this.selectedStore = store;
-  }
->>>>>>> Create storelist component
 }

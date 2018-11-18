@@ -2,8 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-//components
+// components
 import { AppComponent } from './app.component';
+import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
 import { StoreListComponent } from './components/store-list/store-list.component';
 import { ItemListComponent } from './components/item-list/item-list.component';
 import { MainDashboardComponent } from './components/main-dashboard/main-dashboard.component';
@@ -13,6 +14,7 @@ import { StoreDataService } from './services/store-data.service';
 import { ItemDataService } from './services/item-data.service';
 
 const appRoutes: Routes = [
+  { path: 'shopping-list', component: ShoppingListComponent },
   { path: 'store-list', component: StoreListComponent },
   { path: 'item-list', component: ItemListComponent },
   { path: '', component: MainDashboardComponent },
@@ -20,6 +22,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [
+    ShoppingListComponent,
     AppComponent,
     StoreListComponent,
     ItemListComponent,
@@ -29,7 +32,7 @@ const appRoutes: Routes = [
     BrowserModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only      
+      { enableTracing: true } // <-- debugging purposes only
     ),
   ],
   providers: [

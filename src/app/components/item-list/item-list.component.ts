@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ItemDataService } from 'src/app/services/item-data.service';
+import { Component, Input } from '@angular/core';
 import { Item } from '../../models/item.model';
+import { Store } from '../../models/store.model';
 
 @Component({
   selector: 'app-item-list',
@@ -8,9 +8,6 @@ import { Item } from '../../models/item.model';
   styleUrls: ['./item-list.component.css']
 })
 export class ItemListComponent {
-
-  constructor(
-    private itemDataService: ItemDataService
-  ) { }
-
+  @Input() items: Item[];
+  @Input() store: string;
 }

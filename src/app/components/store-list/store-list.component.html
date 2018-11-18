@@ -1,26 +1,11 @@
-<<<<<<< HEAD
+<h2>Store List</h2>
+<div *ngFor="let store of stores" (click)="select(store.name)">
+  <h4>{{store.name}}</h4>
+  <ul>
+    <li>{{store.hideCompleted}}</li>
+  </ul>
+</div>
 <div>
-  <h2>Store List</h2>
-  <div *ngFor="let store of (storeDataService.storeData$ | async)">
-    <h4>{{store.name}}</h4>
-    <ul>
-      <li>{{store.hideCompleted}}</li>
-    </ul>
-=======
-<div class="content">
-  <div class="column">
-    <h2>Store List</h2>
-    <div *ngFor="let store of stores" (click)="selectStore(store)">
-      <h4>{{store.name}}</h4>
-      <ul>
-        <li>{{store.hideCompleted}}</li>
-      </ul>
-    </div>
-    <div>
-      <input type="text" placeholder="Store name">
-      <button>Add new store</button>
-    </div>
->>>>>>> Create storelist component
-  </div>
-  <app-item-list *ngIf="selectedStore" class="column" [store]="selectedStore"></app-item-list>
+  <input type="text" placeholder="Store name">
+  <button>Add new store</button>
 </div>

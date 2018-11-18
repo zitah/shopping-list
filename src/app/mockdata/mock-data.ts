@@ -30,4 +30,4 @@ export const MOCK_STORES = [
     name: 'Rossmann',
     hideCompleted: false,
   },
-]
+];
