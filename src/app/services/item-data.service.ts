@@ -2,11 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Item } from '../models/item.model';
 import { MOCK_ITEMS } from '../mockdata/mock-data';
-import { startWith, scan } from 'rxjs/operators'
+import { startWith, scan, filter, map } from 'rxjs/operators';
 import { Subject } from 'rxjs/internal/Subject';
-import { mergeMap } from 'rxjs/internal/operators/mergeMap';
-import { reduce } from 'rxjs/internal/operators/reduce';
-import { shareReplay } from 'rxjs/internal/operators/shareReplay';
 import { IAction } from 'src/app/interfaces/action.interface';
 
 @Injectable({
@@ -14,18 +11,18 @@ import { IAction } from 'src/app/interfaces/action.interface';
 })
 export class ItemDataService {
 
-  itemData$: Observable<Item[]>; 
+  itemData$: Observable<Item[]>;
   action$ = new Subject<IAction>();
-  
+
   // Initial State
   initState = MOCK_ITEMS;
-    
+
   // Higher order function to send actions to the stream
 
   constructor() {
     this.itemData$ = this.action$.pipe(
-      scan<IAction, Item[]>((state, action) => {  
-        switch(action.type) {
+      scan<IAction, Item[]>((state, action) => {
+        switch (action.type) {
           case 'ADD_ITEM':
             return [
               ...state,
@@ -36,11 +33,9 @@ export class ItemDataService {
         }
       }, this.initState),
       startWith(this.initState),
-    )
+    );
 
-    this.itemData$.subscribe((itemData: Item[]) => {
-      console.log(itemData);
-    });    
+    this.itemData$.subscribe((itemData: Item[]) => { });
   }
 
   addItem(item: Item) {
@@ -48,5 +43,10 @@ export class ItemDataService {
       type: 'ADD_ITEM',
       payload: item
     });
+  }
+
+  getStoreItems(store: string): Observable<Item[]> {
+    return this.itemData$.pipe(
+      map(items => items.filter(item => item.storeId === store)));
   }
 }
