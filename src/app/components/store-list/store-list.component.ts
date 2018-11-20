@@ -9,7 +9,6 @@ import { Store } from '../../models/store.model';
 export class StoreListComponent {
 
   @Input() stores: Store[];
-  @Input() selectedStore: Store;
   @Output() selectStore: EventEmitter<string> = new EventEmitter();
 
   select(store: string) {

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreDataService} from '../../services/store-data.service';
 import { ItemDataService } from '../../services/item-data.service';
-import { Store } from '../../models/store.model';
 import { Item } from '../../models/item.model';
 import { Observable, Subscription } from 'rxjs';
 
