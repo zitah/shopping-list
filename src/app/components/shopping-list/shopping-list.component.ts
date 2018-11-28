@@ -29,6 +29,14 @@ export class ShoppingListComponent implements OnInit {
       hideCompleted: false
     });
   }
+  
+  addItem(form) {
+    this.itemDataService.addItem({
+      name: form.itemName,
+      completed: false,
+      storeId: this.selectedStore
+    });
+  }
 
   selectStore(store) {
     this.selectedStore = store;

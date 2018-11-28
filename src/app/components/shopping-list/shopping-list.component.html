@@ -4,5 +4,9 @@
         (selectStore)="selectStore($event)" 
         [stores]="(storeDataService.storeData$ | async)">
     </app-store-list>
-    <app-item-list *ngIf="selectedStore" class="column" [store]="selectedStore" [items]="storeItems$ | async"></app-item-list>
+    <app-item-list *ngIf="selectedStore" class="column" 
+        (addItem)="addItem($event)"
+        [store]="selectedStore" 
+        [items]="storeItems$ | async">
+    </app-item-list>
 </div>

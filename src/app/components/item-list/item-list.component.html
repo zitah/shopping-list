@@ -7,4 +7,10 @@
       <li>{{item.storeId}}</li>
     </ul>
   </div>
+  <div>
+    <form [formGroup]="addItemForm" (ngSubmit)="onSubmit(addItemForm.value)">
+        <input type="text" placeholder="item name" formControlName="itemName" required minlength="2">
+        <button type="submit" [disabled]="!addItemForm.valid">Add new item</button>
+      </form>
+  </div>
 </div>
