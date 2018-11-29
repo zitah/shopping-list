@@ -6,6 +6,8 @@
   </ul>
 </div>
 <div>
-  <input type="text" placeholder="Store name">
-  <button>Add new store</button>
+  <form [formGroup]="addStoreForm" (ngSubmit)="onSubmit(addStoreForm.value)">
+    <input type="text" placeholder="store name" formControlName="storeName" required minlength="3">
+    <button type="submit" [disabled]="!addStoreForm.valid">Add new store</button>
+  </form>
 </div>

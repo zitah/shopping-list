@@ -23,6 +23,13 @@ export class ShoppingListComponent implements OnInit {
   ngOnInit() {
   }
 
+  addStore(form) {
+    this.storeDataService.addStore({
+      name: form.storeName,
+      hideCompleted: false
+    });
+  }
+
   selectStore(store) {
     this.selectedStore = store;
     this.storeItems$ = this.itemDataService.getStoreItems(store);
