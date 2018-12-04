@@ -15,6 +15,7 @@ export class StoreListComponent {
   @Input() stores: Store[];
   @Output() selectStore: EventEmitter<string> = new EventEmitter();
   @Output() addStore: EventEmitter<string> = new EventEmitter();
+  @Output() deleteStore: EventEmitter<string> = new EventEmitter();
 
   onSubmit(form: any) {
     this.addStore.emit(form);
@@ -22,5 +23,9 @@ export class StoreListComponent {
 
   select(store: string) {
     this.selectStore.emit(store);
+  }
+
+  delete(store: string) {
+    this.deleteStore.emit(store);
   }
 }

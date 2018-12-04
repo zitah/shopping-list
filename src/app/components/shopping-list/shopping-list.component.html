@@ -1,11 +1,13 @@
 <div class="content">
     <app-store-list class="column" 
         (addStore)="addStore($event)" 
-        (selectStore)="selectStore($event)" 
+        (selectStore)="selectStore($event)"
+        (deleteStore)="deleteStore($event)"
         [stores]="(storeDataService.storeData$ | async)">
     </app-store-list>
     <app-item-list *ngIf="selectedStore" class="column" 
         (addItem)="addItem($event)"
+        (deleteItem)="deleteItem($event)"        
         [store]="selectedStore" 
         [items]="storeItems$ | async">
     </app-item-list>

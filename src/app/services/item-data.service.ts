@@ -28,6 +28,10 @@ export class ItemDataService {
               ...state,
               action.payload
             ];
+          case 'DELETE_ITEM':
+            return [
+              ...state
+            ].filter(item => (item.name !== action.payload.name) || (item.storeId !== action.payload.storeId));
           default:
             return state;
         }
@@ -48,5 +52,12 @@ export class ItemDataService {
   getStoreItems(store: string): Observable<Item[]> {
     return this.itemData$.pipe(
       map(items => items.filter(item => item.storeId === store)));
+  }
+
+  deleteItem(item: Item) {
+    this.action$.next({
+      type: 'DELETE_ITEM',
+      payload: item
+    });
   }
 }
