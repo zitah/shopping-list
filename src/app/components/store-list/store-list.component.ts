@@ -18,6 +18,7 @@ export class StoreListComponent {
 
   onSubmit(form: any) {
     this.addStore.emit(form);
+    this.addStoreForm.reset();
   }
 
   select(store: string) {

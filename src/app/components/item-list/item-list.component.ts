@@ -18,5 +18,6 @@ export class ItemListComponent {
 
   onSubmit(form: any) {
     this.addItem.emit(form);
+    this.addItemForm.reset();    
   }
 }
