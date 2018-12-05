@@ -15,9 +15,14 @@ export class ItemListComponent {
   @Input() items: Item[];
   @Input() store: string;
   @Output() addItem: EventEmitter<string> = new EventEmitter();
+  @Output() deleteItem: EventEmitter<Item> = new EventEmitter();
 
   onSubmit(form: any) {
     this.addItem.emit(form);
     this.addItemForm.reset();    
+  }
+
+  delete(item: Item) {
+    this.deleteItem.emit(item);
   }
 }

@@ -29,7 +29,20 @@ export class ShoppingListComponent implements OnInit {
       hideCompleted: false
     });
   }
-  
+
+  selectStore(store) {
+    this.selectedStore = store;
+    this.storeItems$ = this.itemDataService.getStoreItems(store);
+  }
+
+  deleteStore(store) {
+    this.storeDataService.deleteStore(store);
+    this.itemDataService.deleteStoreItems(store);
+    if (this.selectedStore = store) {
+      this.selectedStore = null;
+    }
+  }
+
   addItem(form) {
     this.itemDataService.addItem({
       name: form.itemName,
@@ -38,9 +51,8 @@ export class ShoppingListComponent implements OnInit {
     });
   }
 
-  selectStore(store) {
-    this.selectedStore = store;
-    this.storeItems$ = this.itemDataService.getStoreItems(store);
+  deleteItem(item) {
+    this.itemDataService.deleteItem(item);
   }
 
 }
