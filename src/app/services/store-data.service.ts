@@ -32,9 +32,7 @@ export class StoreDataService {
               action.payload
             ];
           case 'DELETE_STORE':
-            return [
-              ...state
-            ].filter(store => store.name !== action.payload);
+            return state.filter(store => store.name !== action.payload);
           default:
             return state;
         }

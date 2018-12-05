@@ -29,9 +29,9 @@ export class ItemDataService {
               action.payload
             ];
           case 'DELETE_ITEM':
-            return [
-              ...state
-            ].filter(item => (item.name !== action.payload.name) || (item.storeId !== action.payload.storeId));
+            return state.filter(item => (item.name !== action.payload.name) || (item.storeId !== action.payload.storeId));
+          case 'DELETE_STOREITEMS':
+            return state.filter(item => item.storeId !== action.payload);
           default:
             return state;
         }
@@ -58,6 +58,13 @@ export class ItemDataService {
     this.action$.next({
       type: 'DELETE_ITEM',
       payload: item
+    });
+  }
+
+  deleteStoreItems(store: string) {
+    this.action$.next({
+      type: 'DELETE_STOREITEMS',
+      payload: store
     });
   }
 }

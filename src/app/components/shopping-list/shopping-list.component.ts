@@ -37,6 +37,7 @@ export class ShoppingListComponent implements OnInit {
 
   deleteStore(store) {
     this.storeDataService.deleteStore(store);
+    this.itemDataService.deleteStoreItems(store);
     if (this.selectedStore = store) {
       this.selectedStore = null;
     }
