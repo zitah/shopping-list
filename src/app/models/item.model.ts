@@ -4,6 +4,7 @@ export class Item {
     name: string;
     completed: boolean;
     storeId: string;
+    id: string;
 
     constructor(
         item: IItem,
@@ -11,5 +12,6 @@ export class Item {
         this.name = item.name;
         this.completed = item.completed;
         this.storeId = item.storeId;
+        this.id = item.id;
     }
 }
