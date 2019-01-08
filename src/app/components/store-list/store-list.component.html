@@ -4,7 +4,7 @@
   <ul>
     <li>{{store.hideCompleted}}</li>
   </ul>
-  <button (click)="delete(store.name)">Delete store</button>  
+  <button (click)="delete(store.name)">Delete store</button>
 </div>
 <div>
   <form [formGroup]="addStoreForm" (ngSubmit)="onSubmit(addStoreForm.value)">
