@@ -3,6 +3,7 @@ import { StoreDataService} from '../../services/store-data.service';
 import { ItemDataService } from '../../services/item-data.service';
 import { IdGeneratorService } from '../../services/id-generator.service';
 import { Item } from '../../models/item.model';
+import { Store } from 'src/app/models/store.model';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
@@ -12,11 +13,11 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class ShoppingListComponent implements OnInit {
 
-  selectedStore: string;
+  selectedStore: Store;
   storeItems$: Observable<Item[]>;
 
   constructor(
-    private storeDataService: StoreDataService,
+    public storeDataService: StoreDataService,
     private itemDataService: ItemDataService,
     private idGeneratorService: IdGeneratorService,
   ) {
@@ -35,13 +36,13 @@ export class ShoppingListComponent implements OnInit {
 
   selectStore(store) {
     this.selectedStore = store;
-    this.storeItems$ = this.itemDataService.getStoreItems(store);
+    this.storeItems$ = this.itemDataService.getStoreItems(store.id);
   }
 
-  deleteStore(store) {
-    this.storeDataService.deleteStore(store);
-    this.itemDataService.deleteStoreItems(store);
-    if (this.selectedStore = store) {
+  deleteStore(storeId) {
+    this.storeDataService.deleteStore(storeId);
+    this.itemDataService.deleteStoreItems(storeId);
+    if (this.selectedStore.id = storeId) {
       this.selectedStore = null;
     }
   }
@@ -50,7 +51,7 @@ export class ShoppingListComponent implements OnInit {
     this.itemDataService.addItem({
       name: form.itemName,
       completed: false,
-      storeId: this.selectedStore,
+      storeId: this.selectedStore.id,
       id: this.idGeneratorService.generateItemId(),
     });
   }

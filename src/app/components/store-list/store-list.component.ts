@@ -13,7 +13,7 @@ export class StoreListComponent {
   });
 
   @Input() stores: Store[];
-  @Output() selectStore: EventEmitter<string> = new EventEmitter();
+  @Output() selectStore: EventEmitter<Store> = new EventEmitter();
   @Output() addStore: EventEmitter<string> = new EventEmitter();
   @Output() deleteStore: EventEmitter<string> = new EventEmitter();
 
@@ -22,11 +22,11 @@ export class StoreListComponent {
     this.addStoreForm.reset();
   }
 
-  select(store: string) {
+  select(store: Store) {
     this.selectStore.emit(store);
   }
 
-  delete(store: string) {
-    this.deleteStore.emit(store);
+  delete(storeId: string) {
+    this.deleteStore.emit(storeId);
   }
 }

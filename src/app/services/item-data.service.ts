@@ -29,7 +29,7 @@ export class ItemDataService {
               action.payload
             ];
           case 'DELETE_ITEM':
-            return state.filter(item => (item.name !== action.payload.name) || (item.storeId !== action.payload.storeId));
+            return state.filter(item => (item.id !== action.payload.id));
           case 'DELETE_STOREITEMS':
             return state.filter(item => item.storeId !== action.payload);
           default:
@@ -49,9 +49,9 @@ export class ItemDataService {
     });
   }
 
-  getStoreItems(store: string): Observable<Item[]> {
+  getStoreItems(storeId: string): Observable<Item[]> {
     return this.itemData$.pipe(
-      map(items => items.filter(item => item.storeId === store)));
+      map(items => items.filter(item => item.storeId === storeId)));
   }
 
   deleteItem(item: Item) {
@@ -61,10 +61,10 @@ export class ItemDataService {
     });
   }
 
-  deleteStoreItems(store: string) {
+  deleteStoreItems(storeId: string) {
     this.action$.next({
       type: 'DELETE_STOREITEMS',
-      payload: store
+      payload: storeId
     });
   }
 }

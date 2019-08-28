@@ -32,7 +32,7 @@ export class StoreDataService {
               action.payload
             ];
           case 'DELETE_STORE':
-            return state.filter(store => store.name !== action.payload);
+            return state.filter(store => store.id !== action.payload);
           default:
             return state;
         }
@@ -50,10 +50,10 @@ export class StoreDataService {
     });
   }
 
-  deleteStore(storeName: string) {
+  deleteStore(storeId: string) {
     this.action$.next({
       type: 'DELETE_STORE',
-      payload: storeName
+      payload: storeId
     });
   }
 }

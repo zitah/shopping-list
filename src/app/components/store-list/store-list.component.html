@@ -1,10 +1,10 @@
 <h2>Store List</h2>
 <div *ngFor="let store of stores">
-  <h4 (click)="select(store.name)">{{store.name}}</h4>
+  <h4 (click)="select(store)">{{store.name}}</h4>
   <ul>
     <li>{{store.hideCompleted}}</li>
   </ul>
-  <button (click)="delete(store.name)">Delete store</button>
+  <button (click)="delete(store.id)">Delete store</button>
 </div>
 <div>
   <form [formGroup]="addStoreForm" (ngSubmit)="onSubmit(addStoreForm.value)">

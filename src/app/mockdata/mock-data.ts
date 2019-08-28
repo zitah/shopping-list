@@ -2,25 +2,25 @@ export const MOCK_ITEMS = [
   {
     name: 'alma',
     completed: false,
-    storeId: 'Lidl',
+    storeId: 'store-aaaaaaaaaa00000',
     id: 'item-aaaaaaaaaa00000',
   },
   {
     name: 'zeller',
     completed: false,
-    storeId: 'Lidl',
+    storeId: 'store-aaaaaaaaaa00000',
     id: 'item-aaaaaaaaaa00001',
   },
   {
     name: 'fogkefe',
     completed: true,
-    storeId: 'Rossmann',
+    storeId: 'store-aaaaaaaaaa00001',
     id: 'item-aaaaaaaaaa00002',
   },
   {
     name: 'vattapamacs',
     completed: false,
-    storeId: 'Rossmann',
+    storeId: 'store-aaaaaaaaaa00001',
     id: 'item-aaaaaaaaaa00003',
   },
 ];
