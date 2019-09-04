@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreDataService} from '../../services/store-data.service';
 import { ItemDataService } from '../../services/item-data.service';
-import { IdGeneratorService } from '../../services/id-generator.service';
 import { Item } from '../../models/item.model';
 import { Store } from 'src/app/models/store.model';
 import { Observable, Subscription } from 'rxjs';
@@ -19,7 +18,6 @@ export class ShoppingListComponent implements OnInit {
   constructor(
     public storeDataService: StoreDataService,
     private itemDataService: ItemDataService,
-    private idGeneratorService: IdGeneratorService,
   ) {
   }
 
@@ -29,8 +27,6 @@ export class ShoppingListComponent implements OnInit {
   addStore(form) {
     this.storeDataService.addStore({
       name: form.storeName,
-      hideCompleted: false,
-      id: this.idGeneratorService.generateStoreId(),
     });
   }
 
@@ -50,9 +46,7 @@ export class ShoppingListComponent implements OnInit {
   addItem(form) {
     this.itemDataService.addItem({
       name: form.itemName,
-      completed: false,
       storeId: this.selectedStore.id,
-      id: this.idGeneratorService.generateItemId(),
     });
   }
 
