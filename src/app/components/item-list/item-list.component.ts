@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Item } from '../../models/item.model';
+import { IItem } from '../../interfaces/item.interface';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Store } from 'src/app/models/store.model';
+import { IStore } from 'src/app/interfaces/store.interface';
 
 @Component({
   selector: 'app-item-list',
@@ -13,17 +13,17 @@ export class ItemListComponent {
     itemName: new FormControl(''),
   });
 
-  @Input() items: Item[];
-  @Input() store: Store;
+  @Input() items: IItem[];
+  @Input() store: IStore;
   @Output() addItem: EventEmitter<string> = new EventEmitter();
-  @Output() deleteItem: EventEmitter<Item> = new EventEmitter();
+  @Output() deleteItem: EventEmitter<IItem> = new EventEmitter();
 
   onSubmit(form: any) {
     this.addItem.emit(form);
     this.addItemForm.reset();
   }
 
-  delete(item: Item) {
+  delete(item: IItem) {
     this.deleteItem.emit(item);
   }
 }

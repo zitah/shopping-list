@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreDataService} from '../../services/store-data.service';
 import { ItemDataService } from '../../services/item-data.service';
-import { Item } from '../../models/item.model';
-import { Store } from 'src/app/models/store.model';
-import { Observable, Subscription } from 'rxjs';
+import { IItem } from '../../interfaces/item.interface';
+import { IStore } from 'src/app/interfaces/store.interface';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-shopping-list',
@@ -12,8 +12,8 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class ShoppingListComponent implements OnInit {
 
-  selectedStore: Store;
-  storeItems$: Observable<Item[]>;
+  selectedStore: IStore;
+  storeItems$: Observable<IItem[]>;
 
   constructor(
     public storeDataService: StoreDataService,

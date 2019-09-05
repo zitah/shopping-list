@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Store } from '../models/store.model';
+import { IStore } from '../interfaces/store.interface';
 import { MOCK_STORES } from '../mockdata/mock-data';
 import { startWith, scan } from 'rxjs/operators';
 import { Subject } from 'rxjs/internal/Subject';
-import { mergeMap } from 'rxjs/internal/operators/mergeMap';
-import { reduce } from 'rxjs/internal/operators/reduce';
-import { shareReplay } from 'rxjs/internal/operators/shareReplay';
 import { IAction } from 'src/app/interfaces/action.interface';
 import { IdGeneratorService } from './id-generator.service';
 
@@ -15,7 +12,7 @@ import { IdGeneratorService } from './id-generator.service';
 })
 export class StoreDataService {
 
-  storeData$: Observable<Store[]>;
+  storeData$: Observable<IStore[]>;
   action$ = new Subject<IAction>();
 
   // Initial State
@@ -27,7 +24,7 @@ export class StoreDataService {
     private idGeneratorService: IdGeneratorService,
   ) {
     this.storeData$ = this.action$.pipe(
-      scan<IAction, Store[]>((state, action) => {
+      scan<IAction, IStore[]>((state, action) => {
         switch (action.type) {
           case 'ADD_STORE':
             return [
@@ -43,11 +40,11 @@ export class StoreDataService {
       startWith(this.initState),
     );
 
-    this.storeData$.subscribe((storeData: Store[]) => { });
+    this.storeData$.subscribe((storeData: IStore[]) => { });
   }
 
-  addStore(partialStore: Partial<Store>) {
-    const store: Store = {
+  addStore(partialStore: Partial<IStore>) {
+    const store: IStore = {
       name: partialStore.name,
       hideCompleted: false,
       id: this.idGeneratorService.generateStoreId(),
