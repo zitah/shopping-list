@@ -5,6 +5,7 @@ import { MOCK_ITEMS } from '../mockdata/mock-data';
 import { startWith, scan, filter, map } from 'rxjs/operators';
 import { Subject } from 'rxjs/internal/Subject';
 import { IAction } from 'src/app/interfaces/action.interface';
+import { IdGeneratorService } from './id-generator.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,9 @@ export class ItemDataService {
 
   // Higher order function to send actions to the stream
 
-  constructor() {
+  constructor(
+    private idGeneratorService: IdGeneratorService,
+  ) {
     this.itemData$ = this.action$.pipe(
       scan<IAction, Item[]>((state, action) => {
         switch (action.type) {
@@ -42,7 +45,14 @@ export class ItemDataService {
     this.itemData$.subscribe((itemData: Item[]) => { });
   }
 
-  addItem(item: Item) {
+  addItem(partialItem: Partial<Item>) {
+    const item: Item = {
+      name: partialItem.name,
+      storeId: partialItem.storeId,
+      completed: false,
+      id: this.idGeneratorService.generateItemId(),
+    }
+
     this.action$.next({
       type: 'ADD_ITEM',
       payload: item

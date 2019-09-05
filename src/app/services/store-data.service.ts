@@ -8,6 +8,7 @@ import { mergeMap } from 'rxjs/internal/operators/mergeMap';
 import { reduce } from 'rxjs/internal/operators/reduce';
 import { shareReplay } from 'rxjs/internal/operators/shareReplay';
 import { IAction } from 'src/app/interfaces/action.interface';
+import { IdGeneratorService } from './id-generator.service';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +23,9 @@ export class StoreDataService {
 
   // Higher order function to send actions to the stream
 
-  constructor() {
+  constructor(
+    private idGeneratorService: IdGeneratorService,
+  ) {
     this.storeData$ = this.action$.pipe(
       scan<IAction, Store[]>((state, action) => {
         switch (action.type) {
@@ -43,7 +46,13 @@ export class StoreDataService {
     this.storeData$.subscribe((storeData: Store[]) => { });
   }
 
-  addStore(store: Store) {
+  addStore(partialStore: Partial<Store>) {
+    const store: Store = {
+      name: partialStore.name,
+      hideCompleted: false,
+      id: this.idGeneratorService.generateStoreId(),
+    }
+
     this.action$.next({
       type: 'ADD_STORE',
       payload: store
