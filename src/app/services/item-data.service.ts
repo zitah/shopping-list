@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Item } from '../models/item.model';
+import { IItem } from '../interfaces/item.interface';
 import { MOCK_ITEMS } from '../mockdata/mock-data';
-import { startWith, scan, filter, map } from 'rxjs/operators';
+import { startWith, scan, map } from 'rxjs/operators';
 import { Subject } from 'rxjs/internal/Subject';
 import { IAction } from 'src/app/interfaces/action.interface';
 import { IdGeneratorService } from './id-generator.service';
@@ -12,7 +12,7 @@ import { IdGeneratorService } from './id-generator.service';
 })
 export class ItemDataService {
 
-  itemData$: Observable<Item[]>;
+  itemData$: Observable<IItem[]>;
   action$ = new Subject<IAction>();
 
   // Initial State
@@ -24,7 +24,7 @@ export class ItemDataService {
     private idGeneratorService: IdGeneratorService,
   ) {
     this.itemData$ = this.action$.pipe(
-      scan<IAction, Item[]>((state, action) => {
+      scan<IAction, IItem[]>((state, action) => {
         switch (action.type) {
           case 'ADD_ITEM':
             return [
@@ -42,11 +42,11 @@ export class ItemDataService {
       startWith(this.initState),
     );
 
-    this.itemData$.subscribe((itemData: Item[]) => { });
+    this.itemData$.subscribe((itemData: IItem[]) => { });
   }
 
-  addItem(partialItem: Partial<Item>) {
-    const item: Item = {
+  addItem(partialItem: Partial<IItem>) {
+    const item: IItem = {
       name: partialItem.name,
       storeId: partialItem.storeId,
       completed: false,
@@ -59,12 +59,12 @@ export class ItemDataService {
     });
   }
 
-  getStoreItems(storeId: string): Observable<Item[]> {
+  getStoreItems(storeId: string): Observable<IItem[]> {
     return this.itemData$.pipe(
       map(items => items.filter(item => item.storeId === storeId)));
   }
 
-  deleteItem(item: Item) {
+  deleteItem(item: IItem) {
     this.action$.next({
       type: 'DELETE_ITEM',
       payload: item

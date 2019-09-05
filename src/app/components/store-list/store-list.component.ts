@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Store } from '../../models/store.model';
+import { IStore } from '../../interfaces/store.interface';
 
 @Component({
   selector: 'app-store-list',
@@ -12,8 +12,8 @@ export class StoreListComponent {
     storeName: new FormControl(''),
   });
 
-  @Input() stores: Store[];
-  @Output() selectStore: EventEmitter<Store> = new EventEmitter();
+  @Input() stores: IStore[];
+  @Output() selectStore: EventEmitter<IStore> = new EventEmitter();
   @Output() addStore: EventEmitter<string> = new EventEmitter();
   @Output() deleteStore: EventEmitter<string> = new EventEmitter();
 
@@ -22,7 +22,7 @@ export class StoreListComponent {
     this.addStoreForm.reset();
   }
 
-  select(store: Store) {
+  select(store: IStore) {
     this.selectStore.emit(store);
   }
 
