@@ -7,7 +7,8 @@
     </app-store-list>
     <app-item-list *ngIf="selectedStore" class="column" 
         (addItem)="addItem($event)"
-        (deleteItem)="deleteItem($event)"        
+        (deleteItem)="deleteItem($event)"
+        (changeItemCompletion)="changeItemCompletion($event)"
         [store]="selectedStore" 
         [items]="storeItems$ | async">
     </app-item-list>

@@ -3,7 +3,8 @@
   <div *ngFor="let item of items">
     <h4>{{item.name}}</h4>
     <ul>
-      <li>{{item.completed}}</li>
+        <li><input type="checkbox" (change)="checkboxChanged(item)" [checked]="item.completed"></li>
+        <li>{{item.completed}}</li>
       <li>{{item.storeId}}</li>
     </ul>
     <button (click)="delete(item)">Delete item</button>
