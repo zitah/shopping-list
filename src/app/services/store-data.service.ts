@@ -33,6 +33,13 @@ export class StoreDataService {
             ];
           case 'DELETE_STORE':
             return state.filter(store => store.id !== action.payload);
+            case 'CHANGE_HIDECOMPLETED':
+                return state.map(store => {
+                  if (store.id === action.payload.id) {
+                    store.hideCompleted = action.payload.hideCompleted;
+                  }
+                  return store;
+                });
           default:
             return state;
         }
@@ -48,7 +55,7 @@ export class StoreDataService {
       name: partialStore.name,
       hideCompleted: false,
       id: this.idGeneratorService.generateStoreId(),
-    }
+    };
 
     this.action$.next({
       type: 'ADD_STORE',
@@ -60,6 +67,18 @@ export class StoreDataService {
     this.action$.next({
       type: 'DELETE_STORE',
       payload: storeId
+    });
+  }
+
+  changeStoreHideCompleted(storeId: string, hideCompleted: boolean) {
+    const store: Partial<IStore> = {
+      hideCompleted: hideCompleted,
+      id: storeId,
+    };
+
+    this.action$.next({
+      type: 'CHANGE_HIDECOMPLETED',
+      payload: store
     });
   }
 }

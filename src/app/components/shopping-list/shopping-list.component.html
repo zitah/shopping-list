@@ -9,6 +9,7 @@
         (addItem)="addItem($event)"
         (deleteItem)="deleteItem($event)"
         (changeItemCompletion)="changeItemCompletion($event)"
+        (changeStoreHideCompleted)="changeStoreHideCompleted($event)"
         [store]="selectedStore" 
         [items]="storeItems$ | async">
     </app-item-list>

@@ -35,7 +35,7 @@ export class ItemDataService {
             return state.filter(item => (item.id !== action.payload.id));
           case 'DELETE_STOREITEMS':
             return state.filter(item => item.storeId !== action.payload);
-          case 'CHANGE_ITEM':
+          case 'CHANGE_ITEMCOMPLETION':
             return state.map(item => {
               if (item.id === action.payload.id) {
                 item.completed = action.payload.completed;
@@ -92,7 +92,7 @@ export class ItemDataService {
     };
 
     this.action$.next({
-      type: 'CHANGE_ITEM',
+      type: 'CHANGE_ITEMCOMPLETION',
       payload: item
     });
   }

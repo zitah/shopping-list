@@ -18,6 +18,7 @@ export class ItemListComponent {
   @Output() addItem: EventEmitter<string> = new EventEmitter();
   @Output() deleteItem: EventEmitter<IItem> = new EventEmitter();
   @Output() changeItemCompletion: EventEmitter<IItem> = new EventEmitter();
+  @Output() changeStoreHideCompleted: EventEmitter<IStore> = new EventEmitter();
 
   onSubmit(form: any) {
     this.addItem.emit(form);
@@ -28,7 +29,11 @@ export class ItemListComponent {
     this.deleteItem.emit(item);
   }
 
-  checkboxChanged(item: IItem) {
+  itemCheckboxChanged(item: IItem) {
     this.changeItemCompletion.emit(item);
+  }
+
+  storeCheckboxChanged(store: IStore) {
+    this.changeStoreHideCompleted.emit(store);
   }
 }
