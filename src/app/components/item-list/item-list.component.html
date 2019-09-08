@@ -1,13 +1,16 @@
 <div>
   <h2>{{store.name}}</h2>
+  <span><input type="checkbox" (change)="storeCheckboxChanged(store)" [checked]="store.hideCompleted"></span>
   <div *ngFor="let item of items">
-    <h4>{{item.name}}</h4>
-    <ul>
-        <li><input type="checkbox" (change)="checkboxChanged(item)" [checked]="item.completed"></li>
-        <li>{{item.completed}}</li>
-      <li>{{item.storeId}}</li>
-    </ul>
-    <button (click)="delete(item)">Delete item</button>
+    <div *ngIf="!store.hideCompleted || (store.hideCompleted && !item.completed)">
+      <h4>{{item.name}}</h4>
+      <ul>
+          <li><input type="checkbox" (change)="itemCheckboxChanged(item)" [checked]="item.completed"></li>
+          <li>{{item.completed}}</li>
+        <li>{{item.storeId}}</li>
+      </ul>
+      <button (click)="delete(item)">Delete item</button>
+    </div>
   </div>
   <div>
     <form [formGroup]="addItemForm" (ngSubmit)="onSubmit(addItemForm.value)">
