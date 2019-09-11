@@ -35,6 +35,13 @@ export class ItemDataService {
             return state.filter(item => (item.id !== action.payload.id));
           case 'DELETE_STOREITEMS':
             return state.filter(item => item.storeId !== action.payload);
+          case 'CHANGE_ITEM':
+            return state.map(item => {
+              if (item.id === action.payload.id) {
+                item.completed = action.payload.completed;
+              }
+              return item;
+            });
           default:
             return state;
         }
@@ -48,10 +55,10 @@ export class ItemDataService {
   addItem(partialItem: Partial<IItem>) {
     const item: IItem = {
       name: partialItem.name,
-      storeId: partialItem.storeId,
       completed: false,
+      storeId: partialItem.storeId,
       id: this.idGeneratorService.generateItemId(),
-    }
+    };
 
     this.action$.next({
       type: 'ADD_ITEM',
@@ -75,6 +82,18 @@ export class ItemDataService {
     this.action$.next({
       type: 'DELETE_STOREITEMS',
       payload: storeId
+    });
+  }
+
+  changeItemCompletion(itemId: string, completed: boolean) {
+    const item: Partial<IItem> = {
+      completed: completed,
+      id: itemId,
+    };
+
+    this.action$.next({
+      type: 'CHANGE_ITEM',
+      payload: item
     });
   }
 }
