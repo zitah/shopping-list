@@ -6,6 +6,7 @@ import { startWith, scan, map } from 'rxjs/operators';
 import { Subject } from 'rxjs/internal/Subject';
 import { IAction } from 'src/app/interfaces/action.interface';
 import { IdGeneratorService } from './id-generator.service';
+import { IStore } from '../interfaces/store.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -66,9 +67,12 @@ export class ItemDataService {
     });
   }
 
-  getStoreItems(storeId: string): Observable<IItem[]> {
+  getStoreItems(store: IStore): Observable<IItem[]> {
     return this.itemData$.pipe(
-      map(items => items.filter(item => item.storeId === storeId)));
+      map(items => {
+        let storeItems = items.filter(item => item.storeId === store.id);
+        return store.hideCompleted ? storeItems.filter(item => !item.completed) : storeItems;
+      }));
   }
 
   deleteItem(item: IItem) {
@@ -93,7 +97,7 @@ export class ItemDataService {
 
     this.action$.next({
       type: 'CHANGE_ITEMCOMPLETION',
-      payload: item
+      payload: partialItem
     });
   }
 }

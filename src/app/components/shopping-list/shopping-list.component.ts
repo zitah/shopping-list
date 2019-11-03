@@ -32,7 +32,7 @@ export class ShoppingListComponent implements OnInit {
 
   selectStore(store) {
     this.selectedStore = store;
-    this.storeItems$ = this.itemDataService.getStoreItems(store.id);
+    this.storeItems$ = this.itemDataService.getStoreItems(store);
   }
 
   deleteStore(storeId) {
@@ -59,6 +59,6 @@ export class ShoppingListComponent implements OnInit {
   }
 
   changeStoreHideCompleted(store) {
-    this.storeDataService.changeStoreHideCompleted(store.id, !store.hideCompleted);
+    this.storeDataService.changeStoreHideCompleted(store);
   }
 }

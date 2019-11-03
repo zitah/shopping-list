@@ -70,15 +70,15 @@ export class StoreDataService {
     });
   }
 
-  changeStoreHideCompleted(storeId: string, hideCompleted: boolean) {
-    const store: Partial<IStore> = {
-      hideCompleted: hideCompleted,
-      id: storeId,
+  changeStoreHideCompleted(store: IStore) {
+    const partialStore: Partial<IStore> = {
+      hideCompleted: !store.hideCompleted,
+      id: store.id,
     };
 
     this.action$.next({
       type: 'CHANGE_HIDECOMPLETED',
-      payload: store
+      payload: partialStore
     });
   }
 }
