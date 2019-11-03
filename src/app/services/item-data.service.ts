@@ -85,15 +85,15 @@ export class ItemDataService {
     });
   }
 
-  changeItemCompletion(itemId: string, completed: boolean) {
-    const item: Partial<IItem> = {
-      completed: completed,
-      id: itemId,
+  changeItemCompletion(item: IItem) {
+    const partialItem: Partial<IItem> = {
+      completed: !item.completed,
+      id: item.id,
     };
 
     this.action$.next({
       type: 'CHANGE_ITEM',
-      payload: item
+      payload: partialItem
     });
   }
 }

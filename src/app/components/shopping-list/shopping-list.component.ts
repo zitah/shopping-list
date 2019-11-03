@@ -55,7 +55,7 @@ export class ShoppingListComponent implements OnInit {
   }
 
   changeItemCompletion(item) {
-    this.itemDataService.changeItemCompletion(item.id, !item.completed);
+    this.itemDataService.changeItemCompletion(item);
   }
 
 }
